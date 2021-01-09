@@ -5,6 +5,9 @@ using MediatR;
 
 namespace LocadoraAspNet.Application.Features.Genres.Queries
 {
+    /// <summary>
+    /// Consulta gênero de filmes por ID
+    /// </summary>
     public class GetGenreByIdQuery : IRequest<(Exception, Genre)>
     {
         /// <summary>

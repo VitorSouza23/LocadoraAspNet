@@ -5,6 +5,9 @@ using MediatR;
 
 namespace LocadoraAspNet.Application.Features.Genres.Commands
 {
+    /// <summary>
+    /// Comando para adição de gênero de filmes
+    /// </summary>
     public class AddGenreCommand : IRequest<(Exception, Genre)>
     {
         /// <summary>
@@ -24,7 +27,7 @@ namespace LocadoraAspNet.Application.Features.Genres.Commands
     {
         public AddGenreCommandValidator()
         {
-            RuleFor(g => g.Name).NotEmpty();
+            RuleFor(g => g.Name).MaximumLength(100).NotEmpty();
             RuleFor(g => g.Active).NotNull();
         }
     }

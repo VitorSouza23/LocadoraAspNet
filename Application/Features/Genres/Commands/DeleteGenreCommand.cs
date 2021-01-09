@@ -5,7 +5,10 @@ using MediatR;
 
 namespace LocadoraAspNet.Application.Features.Genres.Commands
 {
-    public class DeleteGenreComand : IRequest<(Exception, Genre)>
+    /// <summary>
+    /// Comando de exclusão de gênero de filmes
+    /// </summary>
+    public class DeleteGenreCommand : IRequest<(Exception, Genre)>
     {
         /// <summary>
         /// ID do gênero
@@ -14,7 +17,7 @@ namespace LocadoraAspNet.Application.Features.Genres.Commands
         public int Id { get; set; }
     }
 
-    public class DeleteGenreComandValidator : AbstractValidator<DeleteGenreComand>
+    public class DeleteGenreComandValidator : AbstractValidator<DeleteGenreCommand>
     {
         public DeleteGenreComandValidator()
         {

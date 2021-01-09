@@ -72,10 +72,10 @@ namespace LocadoraAspNet.Controllers.Genres
         [ProducesResponseType(500, Type = typeof(ExceptionPayload))]
         public async Task<IActionResult> GetById(int id)
         {
-            (Exception exception, Genre genres) = await _mediator.Send(new GetGenreByIdQuery() { Id = id });
+            (Exception exception, Genre genre) = await _mediator.Send(new GetGenreByIdQuery() { Id = id });
             if (exception != null)
                 return BadRequest(new ExceptionPayload(exception.Message));
-            return Ok(_mapper.Map<Genre, GenreViewModel>(genres));
+            return Ok(_mapper.Map<Genre, GenreViewModel>(genre));
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace LocadoraAspNet.Controllers.Genres
         [ProducesResponseType(500, Type = typeof(ExceptionPayload))]
         public async Task<IActionResult> Delete(int id)
         {
-            (Exception exception, Genre result) = await _mediator.Send(new DeleteGenreComand { Id = id });
+            (Exception exception, Genre result) = await _mediator.Send(new DeleteGenreCommand { Id = id });
             if (exception != null)
                 return BadRequest(new ExceptionPayload(exception.Message));
             return Ok(_mapper.Map<Genre, GenreViewModel>(result));

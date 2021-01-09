@@ -6,11 +6,14 @@ namespace LocadoraAspNet.Models.Features.Movies
 {
     public class Movie : Entity
     {
-        protected Movie() { }
-        public Movie(string name, DateTime creationDate, bool active, Genre genre)
+        protected Movie()
+        {
+            CreationDate = DateTime.Now;
+        }
+
+        public Movie(string name, bool active, Genre genre) : this()
         {
             Name = name;
-            CreationDate = creationDate;
             Active = active;
             Genre = genre;
         }
@@ -20,5 +23,7 @@ namespace LocadoraAspNet.Models.Features.Movies
         public bool Active { get; set; }
         public int GenreId { get; set; }
         public virtual Genre Genre { get; set; }
+
+        public bool GenreIsActived() => Genre.Active;
     }
 }

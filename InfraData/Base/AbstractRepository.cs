@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using LocadoraAspNet.Exceptions;
 using LocadoraAspNet.InfraData.Contexts;
@@ -10,12 +11,15 @@ namespace LocadoraAspNet.InfraData.Base
 {
     public abstract class AbstractRepository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
-        private readonly DataContext _context;
+        protected readonly DataContext _context;
 
         public AbstractRepository(DataContext context)
         {
             _context = context;
         }
+
+        protected virtual IQueryable<TEntity> FindByIdCustomQuery() => _context.Set<TEntity>().AsQueryable();
+        protected virtual IQueryable<TEntity> FindAllCustomQuery() => _context.Set<TEntity>().AsQueryable();
 
         public async Task<(Exception, TEntity)> AddAsync(TEntity entity)
         {
@@ -65,7 +69,7 @@ namespace LocadoraAspNet.InfraData.Base
         {
             try
             {
-                var entities = await _context.Set<TEntity>().ToListAsync();
+                var entities = await FindAllCustomQuery().ToListAsync();
                 return (null, entities);
             }
             catch (Exception ex)
@@ -78,7 +82,7 @@ namespace LocadoraAspNet.InfraData.Base
         {
             try
             {
-                var entity = await _context.Set<TEntity>().FindAsync(id);
+                var entity = await FindByIdCustomQuery().FirstOrDefaultAsync(e => e.Id == id);
                 if (entity == null)
                     return (new NotFoundException(), null);
                 return (null, entity);
