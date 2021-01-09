@@ -1,16 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using LocadoraAspNet.InfraData.Base;
 
 namespace LocadoraAspNet.Models.Features.Genres
 {
-    public interface IGenreRepository
+    public interface IGenreRepository : IRepository<Genre>
     {
-        Task<(Exception, Genre)> AddAsync(Genre genre);
-        Task<(Exception, IEnumerable<Genre>)> GetAllAsync();
-        Task<(Exception, Genre)> GetByIdAsync(int id);
-        Task<(Exception, Genre)> UpdateAsync(Genre genre);
-        Task<(Exception, Genre)> DeleteAsync(int id);
-
     }
 }

@@ -7,6 +7,10 @@ namespace LocadoraAspNet.Application.Features.Genres.Queries
 {
     public class GetGenreByIdQuery : IRequest<(Exception, Genre)>
     {
+        /// <summary>
+        /// ID do gênero a ser buscado
+        /// </summary>
+        /// <value></value>
         public int Id { get; set; }
     }
 

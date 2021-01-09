@@ -1,6 +1,8 @@
+using LocadoraAspNet.InfraData.Base;
+
 namespace LocadoraAspNet.Models.Features.Locations
 {
-    public interface ILocationRepository
+    public interface ILocationRepository : IRepository<Location>
     {
 
     }

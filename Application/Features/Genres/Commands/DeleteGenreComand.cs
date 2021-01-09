@@ -7,6 +7,10 @@ namespace LocadoraAspNet.Application.Features.Genres.Commands
 {
     public class DeleteGenreComand : IRequest<(Exception, Genre)>
     {
+        /// <summary>
+        /// ID do gênero
+        /// </summary>
+        /// <value></value>
         public int Id { get; set; }
     }
 

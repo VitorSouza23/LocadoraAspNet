@@ -7,7 +7,16 @@ namespace LocadoraAspNet.Application.Features.Genres.Commands
 {
     public class AddGenreCommand : IRequest<(Exception, Genre)>
     {
+        /// <summary>
+        /// Nome do gênero
+        /// </summary>
+        /// <value></value>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Status de ativação
+        /// </summary>
+        /// <value></value>
         public bool Active { get; set; }
     }
 

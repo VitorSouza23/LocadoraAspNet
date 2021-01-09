@@ -5,6 +5,7 @@ namespace LocadoraAspNet.Controllers.Genres.ViewModels
 {
     public class GenreViewModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
         public bool Active { get; set; }

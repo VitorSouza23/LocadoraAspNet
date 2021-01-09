@@ -12,6 +12,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LocadoraAspNet.Controllers.Genres
 {
+    /// <summary>
+    /// Endpoint de gêneros de filmes
+    /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
     public class GenresController : Controller
@@ -25,8 +28,15 @@ namespace LocadoraAspNet.Controllers.Genres
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Adiciona um novo gênero de filmes
+        /// </summary>
+        /// <param name="addGenreCommand"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(200, Type = typeof(GenreViewModel))]
+        [ProducesResponseType(400, Type = typeof(ExceptionPayload))]
+        [ProducesResponseType(500, Type = typeof(ExceptionPayload))]
         public async Task<IActionResult> Add([FromBody] AddGenreCommand addGenreCommand)
         {
             (Exception exception, Genre result) = await _mediator.Send(addGenreCommand);
@@ -35,8 +45,14 @@ namespace LocadoraAspNet.Controllers.Genres
             return Ok(_mapper.Map<Genre, GenreViewModel>(result));
         }
 
+        /// <summary>
+        /// Encontra todos os gêneros de filmes cadastrados
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<GenreViewModel>))]
+        [ProducesResponseType(400, Type = typeof(ExceptionPayload))]
+        [ProducesResponseType(500, Type = typeof(ExceptionPayload))]
         public async Task<IActionResult> GetAll()
         {
             (Exception exception, IEnumerable<Genre> genres) = await _mediator.Send(new GetAllGenresQuery());
@@ -45,8 +61,15 @@ namespace LocadoraAspNet.Controllers.Genres
             return Ok(_mapper.Map<IEnumerable<Genre>, IEnumerable<GenreViewModel>>(genres));
         }
 
+        /// <summary>
+        /// Encontra um gênero de filme através de seu ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id:int}")]
         [ProducesResponseType(200, Type = typeof(GenreViewModel))]
+        [ProducesResponseType(400, Type = typeof(ExceptionPayload))]
+        [ProducesResponseType(500, Type = typeof(ExceptionPayload))]
         public async Task<IActionResult> GetById(int id)
         {
             (Exception exception, Genre genres) = await _mediator.Send(new GetGenreByIdQuery() { Id = id });
@@ -55,8 +78,15 @@ namespace LocadoraAspNet.Controllers.Genres
             return Ok(_mapper.Map<Genre, GenreViewModel>(genres));
         }
 
+        /// <summary>
+        /// Atualiza os dados de um gênero de filme
+        /// </summary>
+        /// <param name="putGenreCommand"></param>
+        /// <returns></returns>
         [HttpPut]
         [ProducesResponseType(200, Type = typeof(GenreViewModel))]
+        [ProducesResponseType(400, Type = typeof(ExceptionPayload))]
+        [ProducesResponseType(500, Type = typeof(ExceptionPayload))]
         public async Task<IActionResult> Put([FromBody] PutGenreCommand putGenreCommand)
         {
             (Exception exception, Genre result) = await _mediator.Send(putGenreCommand);
@@ -65,8 +95,15 @@ namespace LocadoraAspNet.Controllers.Genres
             return Ok(_mapper.Map<Genre, GenreViewModel>(result));
         }
 
+        /// <summary>
+        /// Remove um gênero de filme
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id:int}")]
         [ProducesResponseType(200, Type = typeof(GenreViewModel))]
+        [ProducesResponseType(400, Type = typeof(ExceptionPayload))]
+        [ProducesResponseType(500, Type = typeof(ExceptionPayload))]
         public async Task<IActionResult> Delete(int id)
         {
             (Exception exception, Genre result) = await _mediator.Send(new DeleteGenreComand { Id = id });
