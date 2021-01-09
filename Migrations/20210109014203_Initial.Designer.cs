@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocadoraAspNet.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210108003335_Initial")]
+    [Migration("20210109014203_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,10 @@ namespace LocadoraAspNet.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("CustomerCpf")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("LocationDate")
                         .HasColumnType("datetime2");
 
@@ -90,30 +94,6 @@ namespace LocadoraAspNet.Migrations
                     b.HasIndex("LocationId");
 
                     b.ToTable("Movies");
-                });
-
-            modelBuilder.Entity("LocadoraAspNet.Models.Features.Locations.Location", b =>
-                {
-                    b.OwnsOne("LocadoraAspNet.Models.Features.Locations.Cpf", "CustomerCpf", b1 =>
-                        {
-                            b1.Property<int>("LocationId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .UseIdentityColumn();
-
-                            b1.Property<string>("Value")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("LocationId");
-
-                            b1.ToTable("Locations");
-
-                            b1.WithOwner()
-                                .HasForeignKey("LocationId");
-                        });
-
-                    b.Navigation("CustomerCpf");
                 });
 
             modelBuilder.Entity("LocadoraAspNet.Models.Features.Movies.Movie", b =>

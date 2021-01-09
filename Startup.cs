@@ -53,7 +53,7 @@ namespace LocadoraAspNet
             services.AddScoped<ILocationRepository, LocationRespository>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dataContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -71,8 +71,6 @@ namespace LocadoraAspNet
             {
                 endpoints.MapControllers();
             });
-
-            app.DoMigrations(dataContext);
         }
     }
 }

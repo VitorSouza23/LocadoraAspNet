@@ -10,8 +10,10 @@ namespace LocadoraAspNet.InfraData.Features.Locations
         {
             builder.HasKey(l => l.Id);
             builder.Property(l => l.LocationDate).IsRequired();
+            builder.Property(l => l.CustomerCpf)
+                .IsRequired()
+                .HasConversion(c => c.Value, c => new Cpf(c));
 
-            builder.OwnsOne(l => l.CustomerCpf, c => c.Property(cpf => cpf.Value).IsRequired());
             builder.HasMany(l => l.Movies);
         }
     }

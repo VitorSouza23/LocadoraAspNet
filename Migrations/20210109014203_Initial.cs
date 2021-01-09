@@ -29,7 +29,7 @@ namespace LocadoraAspNet.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LocationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CustomerCpf_Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CustomerCpf = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
