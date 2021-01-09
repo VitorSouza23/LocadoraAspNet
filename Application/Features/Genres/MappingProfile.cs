@@ -9,6 +9,7 @@ namespace LocadoraAspNet.Application.Features.Genres
         public MappingProfile()
         {
             CreateMap<AddGenreCommand, Genre>();
+            CreateMap<PutGenreCommand, Genre>();
         }
     }
 }

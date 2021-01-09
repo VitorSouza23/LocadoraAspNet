@@ -7,11 +7,13 @@ namespace LocadoraAspNet.Models.Features.Genres
 {
     public class Genre : Entity
     {
-        protected Genre() { }
-        public Genre(string name, DateTime creationDate, bool active)
+        protected Genre()
+        {
+            CreationDate = DateTime.Now;
+        }
+        public Genre(string name, DateTime creationDate, bool active) : this()
         {
             Name = name;
-            CreationDate = creationDate;
             Active = active;
         }
 
