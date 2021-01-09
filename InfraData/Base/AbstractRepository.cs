@@ -21,7 +21,7 @@ namespace LocadoraAspNet.InfraData.Base
         protected virtual IQueryable<TEntity> FindByIdCustomQuery() => _context.Set<TEntity>().AsQueryable();
         protected virtual IQueryable<TEntity> FindAllCustomQuery() => _context.Set<TEntity>().AsQueryable();
 
-        public async Task<(Exception, TEntity)> AddAsync(TEntity entity)
+        public virtual async Task<(Exception, TEntity)> AddAsync(TEntity entity)
         {
             TEntity newEntity;
             using var transaction = _context.Database.BeginTransaction();
@@ -40,7 +40,7 @@ namespace LocadoraAspNet.InfraData.Base
             return (null, newEntity);
         }
 
-        public async Task<(Exception, TEntity)> DeleteAsync(int id)
+        public virtual async Task<(Exception, TEntity)> DeleteAsync(int id)
         {
             TEntity deletedEntity;
             using var transaction = _context.Database.BeginTransaction();
@@ -65,7 +65,7 @@ namespace LocadoraAspNet.InfraData.Base
             return (null, deletedEntity);
         }
 
-        public async Task<(Exception, IEnumerable<TEntity>)> GetAllAsync()
+        public virtual async Task<(Exception, IEnumerable<TEntity>)> GetAllAsync()
         {
             try
             {
@@ -78,7 +78,7 @@ namespace LocadoraAspNet.InfraData.Base
             }
         }
 
-        public async Task<(Exception, TEntity)> GetByIdAsync(int id)
+        public virtual async Task<(Exception, TEntity)> GetByIdAsync(int id)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace LocadoraAspNet.InfraData.Base
             }
         }
 
-        public async Task<(Exception, TEntity)> UpdateAsync(TEntity entity)
+        public virtual async Task<(Exception, TEntity)> UpdateAsync(TEntity entity)
         {
             TEntity updatedEntity;
             using var transaction = _context.Database.BeginTransaction();

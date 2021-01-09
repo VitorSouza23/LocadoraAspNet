@@ -102,11 +102,13 @@ namespace LocadoraAspNet.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LocadoraAspNet.Models.Features.Locations.Location", null)
+                    b.HasOne("LocadoraAspNet.Models.Features.Locations.Location", "Location")
                         .WithMany("Movies")
                         .HasForeignKey("LocationId");
 
                     b.Navigation("Genre");
+
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("LocadoraAspNet.Models.Features.Genres.Genre", b =>

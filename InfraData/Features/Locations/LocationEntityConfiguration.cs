@@ -14,7 +14,9 @@ namespace LocadoraAspNet.InfraData.Features.Locations
                 .IsRequired()
                 .HasConversion(c => c.Value, c => new Cpf(c));
 
-            builder.HasMany(l => l.Movies);
+            builder.HasMany(l => l.Movies)
+                .WithOne(m => m.Location)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

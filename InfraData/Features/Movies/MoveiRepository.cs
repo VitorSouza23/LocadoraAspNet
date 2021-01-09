@@ -43,5 +43,21 @@ namespace LocadoraAspNet.InfraData.Features.Movies
 
             return (null, deletedMovies);
         }
+
+        public async Task<(Exception, IEnumerable<Movie>)> GetManyAsync(params int[] movieIds)
+        {
+            try
+            {
+                var movies = await _context.Movies.Include(m => m.Genre).Where(m => movieIds.Contains(m.Id)).ToListAsync();
+                if (movieIds.Except(movies.Select(m => m.Id)).Any())
+                    return (new NotFoundException("Nem todos os filmes solicitados foram encontrados na base"), null);
+
+                return (null, movies);
+            }
+            catch (Exception ex)
+            {
+                return (ex, null);
+            }
+        }
     }
 }

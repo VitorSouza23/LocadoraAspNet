@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocadoraAspNet.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210109014203_Initial")]
+    [Migration("20210109224316_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,11 +104,13 @@ namespace LocadoraAspNet.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LocadoraAspNet.Models.Features.Locations.Location", null)
+                    b.HasOne("LocadoraAspNet.Models.Features.Locations.Location", "Location")
                         .WithMany("Movies")
                         .HasForeignKey("LocationId");
 
                     b.Navigation("Genre");
+
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("LocadoraAspNet.Models.Features.Genres.Genre", b =>

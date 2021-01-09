@@ -22,7 +22,7 @@ namespace LocadoraAspNet.Models.Features.Locations
             return Value;
         }
 
-        private bool IsValid(string value)
+        public static bool IsValid(string value)
         {
             int[] multiplier1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplier2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -41,7 +41,7 @@ namespace LocadoraAspNet.Models.Features.Locations
             return value.EndsWith(digit);
         }
 
-        private string GetDigit(int[] multiplier, string temporaryCpf)
+        private static string GetDigit(int[] multiplier, string temporaryCpf)
         {
             int sum = 0;
 

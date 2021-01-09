@@ -8,5 +8,6 @@ namespace LocadoraAspNet.Models.Features.Movies
     public interface IMovieRepository : IRepository<Movie>
     {
         Task<(Exception, IEnumerable<Movie>)> DeleteManyAsync(IEnumerable<int> movieIds);
+        Task<(Exception, IEnumerable<Movie>)> GetManyAsync(params int[] movieIds);
     }
 }
