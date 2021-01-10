@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: vitorsouza97/locadora-asp-net
     ports: 
       - 5000:5000
       - 5001:5001
