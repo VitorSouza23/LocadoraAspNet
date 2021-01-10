@@ -29,7 +29,10 @@ namespace LocadoraAspNet.Application.Features.Locations.Commands
         public AddLocationCommandValidator()
         {
             RuleFor(a => a.MoviesIds).NotEmpty();
-            RuleFor(a => a.CustomerCpf).NotEmpty().Must(a => Cpf.IsValid(a)).WithMessage("CPF inválido");
+            RuleFor(a => a.CustomerCpf)
+                .NotEmpty()
+                .MaximumLength(14)
+                .Must(a => Cpf.IsValid(a)).WithMessage("CPF inválido");
         }
     }
 }

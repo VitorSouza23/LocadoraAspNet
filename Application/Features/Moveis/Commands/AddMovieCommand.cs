@@ -35,7 +35,7 @@ namespace LocadoraAspNet.Application.Features.Movies.Commands
         public AddMovieCommandValidator()
         {
             RuleFor(a => a.Name).MaximumLength(200).NotEmpty();
-            RuleFor(a => a.Active).NotEmpty();
+            RuleFor(a => a.Active).NotNull();
             RuleFor(a => a.GenreId).NotEmpty();
         }
     }

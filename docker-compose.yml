@@ -9,8 +9,10 @@ services:
       - 5001:5001
     depends_on:
       - db
+    environment:
+      - ConnectionStrings__AspNetDockerContext=Server=db,1433;Database=LocadoraAspNetContext;User Id=sa;Password=P@ssw0rd
   db:
-    image: "mcr.microsoft.com/mssql/server"
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
     environment: 
       SA_PASSWORD: "P@ssw0rd"
       ACCEPT_EULA: "Y"

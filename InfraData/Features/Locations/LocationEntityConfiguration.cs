@@ -11,6 +11,7 @@ namespace LocadoraAspNet.InfraData.Features.Locations
             builder.HasKey(l => l.Id);
             builder.Property(l => l.LocationDate).IsRequired();
             builder.Property(l => l.CustomerCpf)
+                .HasMaxLength(14)
                 .IsRequired()
                 .HasConversion(c => c.Value, c => new Cpf(c));
 

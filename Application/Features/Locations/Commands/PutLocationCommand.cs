@@ -36,7 +36,10 @@ namespace LocadoraAspNet.Application.Features.Locations.Commands
         {
             RuleFor(p => p.Id).GreaterThan(0).NotEmpty();
             RuleFor(p => p.MoviesIds).NotEmpty();
-            RuleFor(p => p.CustomerCpf).NotEmpty().Must(a => Cpf.IsValid(a)).WithMessage("CPF inválido");
+            RuleFor(p => p.CustomerCpf)
+                .NotEmpty()
+                .MaximumLength(14)
+                .Must(a => Cpf.IsValid(a)).WithMessage("CPF inválido");
         }
     }
 }

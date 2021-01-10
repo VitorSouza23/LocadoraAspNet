@@ -33,7 +33,7 @@ namespace LocadoraAspNet.Application.Features.Locations.Handlers
                 return (ex, null);
 
             if (!movies.All(m => m.Active))
-                return (new NotFoundException("Nem todos os filmes solicitados existem na base"), null);
+                return (new NotFoundException("Nem todos os filmes solicitados estão ativos na base"), null);
 
             var location = _mapper.Map<AddLocationCommand, Location>(request);
             location.SetMovies(movies);

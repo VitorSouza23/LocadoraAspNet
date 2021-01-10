@@ -41,7 +41,7 @@ namespace LocadoraAspNet.Application.Features.Movies.Commands
         {
             RuleFor(p => p.Id).GreaterThan(0).NotEmpty();
             RuleFor(p => p.Name).MaximumLength(200).NotEmpty();
-            RuleFor(p => p.Active).NotEmpty();
+            RuleFor(p => p.Active).NotNull();
             RuleFor(p => p.GenreId).NotEmpty();
         }
     }
